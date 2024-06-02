@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LapBarangKeluarController;
 use App\Http\Controllers\Admin\LapBarangMasukController;
 use App\Http\Controllers\Admin\LapStokBarangController;
 use App\Http\Controllers\Admin\TeknisiController;
+use App\Http\Controllers\Admin\PengajuanController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MerkController;
 use App\Http\Controllers\Admin\SatuanController;
@@ -97,6 +98,15 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/teknisi/proses_tambah/', [TeknisiController::class, 'proses_tambah'])->name('teknisi.store');
         Route::post('/admin/teknisi/proses_ubah/{teknisi}', [TeknisiController::class, 'proses_ubah']);
         Route::post('/admin/teknisi/proses_hapus/{teknisi}', [TeknisiController::class, 'proses_hapus']);
+    });
+
+    Route::middleware(['checkRoleUser:/pengajuan,menu'])->group(function () {
+        // pengajuan
+        Route::resource('/admin/pengajuan', \App\Http\Controllers\Admin\PengajuanController::class);
+        Route::get('/admin/pengajuan/show/', [PengajuanController::class, 'show'])->name('pengajuan.getpengajuan');
+        Route::post('/admin/pengajuan/proses_tambah/', [PengajuanController::class, 'proses_tambah'])->name('pengajuan.store');
+        Route::post('/admin/pengajuan/proses_ubah/{pengajuan}', [PengajuanController::class, 'proses_ubah']);
+        Route::post('/admin/pengajuan/proses_hapus/{pengajuan}', [PengajuanController::class, 'proses_hapus']);
     });
 
     Route::middleware(['checkRoleUser:/barang-masuk,submenu'])->group(function () {

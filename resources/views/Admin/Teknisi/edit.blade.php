@@ -19,6 +19,10 @@
                     <label for="alamatU" class="form-label">Alamat</label>
                     <textarea name="alamatU" class="form-control" rows="4"></textarea>
                 </div>
+                {{-- <div class="form-group">
+                    <label for="test" class="form-label">Test</label>
+                    <input type="text" name="test">
+                </div> --}}
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success d-none" id="btnLoaderU" type="button" disabled="">
@@ -34,6 +38,8 @@
 
 @section('formEditJS')
 <script>
+    // const idTeknisi = $("input[name='idteknisiU']").val();
+    // $("input[name='test']").val(idTeknisi);
     function checkFormU() {
         const teknisi = $("input[name='teknisiU']").val();
         setLoadingU(true);
